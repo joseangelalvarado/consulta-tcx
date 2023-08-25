@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard2</title>
+</head>
+<body>
+
+    <main>
+        <h1>Total de consultas</h1>
+        <h3>{{pacientes_total}}</h3>
+
+        <h1>Promedio de consulta por dia</h1>
+
+        <ul>
+
+            {% for paciente_meses in promedios %}
+            <li>{{ paciente_meses.month }}, promedio por dia: {{ paciente_meses.promedio }}</li>
+            {% endfor %}
+
+        </ul>
+
+        <h3>Consultas por trimestre</h3>
+
+        <ul>
+            <li>Primer trimestre {{pacientes_primer_trimestre}}</li>
+            <li>Segundo trimestre {{pacientes_segundo_trimestre}}</li>
+            <li>Tercer trimestre {{pacientes_tercer_trimestre}}</li>
+        </ul>
+
+        <h1>Edad</h1>
+        <img src="data:image/png;base64, {{string}}" alt="grafico">
+
+        <h1>Fecha</h1>
+        <img src="data:image/png;base64, {{string2}}" alt="grafico">
+
+        <h1>Triage</h1>
+        <img src="data:image/png;base64, {{string3}}" alt="grafico">
+
+        <h1>Trimestre</h1>
+        <img src="data:image/png;base64, {{string4}}" alt="grafico">
+
+        {% for edad_pac in paciente_edad_top %}
+        <ul>
+            <li>
+                {{edad_pac.edad}}
+            </li>
+        </ul>
+
+
+    </main>
+    
+</body>
+</html>

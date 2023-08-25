@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style3.css' %}">
+    <title>Consulta</title>
+</head>
+<body>
+
+    <header>
+        <h1 id="titulo">Estadísticas</h1>
+    </header>
+
+    <div id="back">
+
+        <main>
+            <div id="numeros">
+                
+                <h3>Total de consultas</h3>
+
+                <p>{{pacientes_total}}</p>
+
+                <h3>Mes con más consultas</h3>
+
+                {% for top_fechas in pacientes_fecha_top %}
+                    <p> {{top_fechas.month}}  {{top_fechas.total}}</p>
+                {% endfor %}
+
+
+               <!--- <h3>Promedio por dia</h3>
+
+                <ul>
+
+                    {% for paciente_meses in promedios %}
+                    <li>{{ paciente_meses.month }}, promedio por dia: {{ paciente_meses.promedio }}</li>
+                    {% endfor %}
+
+                </ul>--->
+
+               <!--- <h3>Consultas por trimestre</h3>
+
+                <ul>
+                    <li>Primer trimestre {{pacientes_primer_trimestre}}</li>
+                    <li>Segundo trimestre {{pacientes_segundo_trimestre}}</li>
+                    <li>Tercer trimestre {{pacientes_tercer_trimestre}}</li>
+                </ul> --->
+
+                <h3>Consultas por edad</h3>
+
+                <ul>
+                    {% for edad_pac in paciente_edad_top %}
+                    <li>{{ edad_pac.edad }}</li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+
+            <div id="numeros2">
+
+                <h3>Principal motivo de consulta</h3>
+
+                {% for motivos in paciente_motivo %}
+                <p>{{motivos.motivo}}  {{motivos.cantidad}}</p>
+                {% endfor %}
+
+                <h3>Triage</h3>
+                {% for triages in paciente_triage_top %}
+                    {% if triages.triage == 1 %}
+                        <p>verde {{triages.total_triage}}</p>
+                    {% elif triages.triage == 2 %}
+                        <p>amarillo {{triages.total_triage}</p>
+                    {% else %}
+                        <p>rojo {{triages.total_triage}}</p>
+                    {% endif %}
+                {% endfor %}
+
+                <h3>Trimestre de embarazo con mas consultas</h3>
+
+                <p>{{trim_key.0}}</p>
+
+            </div>
+
+            <div id="viz">
+            
+                <img src="data:image/png;base64, {{string}}" alt="grafico">
+
+                
+                <img src="data:image/png;base64, {{string2}}" alt="grafico">
+            
+            </div>
+
+            <div id="viz2">
+                
+                <img src="data:image/png;base64, {{string3}}" alt="grafico">
+
+            
+                <img src="data:image/png;base64, {{string4}}" alt="grafico">
+
+            </div>
+
+        </main>
+    </div>
+
+    
+</body>
+</html>

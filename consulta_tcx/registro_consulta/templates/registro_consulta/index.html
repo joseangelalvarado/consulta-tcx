@@ -1,0 +1,90 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <title>Consulta</title>
+</head>
+<body>
+
+    <header>
+        <h1>Consulta Tococirugía</h1>
+    </header>
+
+    <main>
+
+        <form action="{% url 'registro_consulta:agrega_pac'%}" method = "POST">
+
+
+            {% csrf_token %}
+            <fieldset>
+                <legend>Nombre</legend>
+                <input type="text" name="name">
+            </fieldset>
+            <fieldset>
+                <legend>Apellido Paterno</legend>
+                <input type="text" name="last_name1">
+            </fieldset>
+            <fieldset>
+                <legend>Apellido Materno</legend>
+                <input type="text" name="last_name2">
+            </fieldset>
+            <fieldset>
+                <legend>Edad</legend>
+                <input type="number" name="age">
+            </fieldset>
+            <fieldset>
+                <legend>Semanas</legend>
+                <input type="number" name="sdg">
+            </fieldset>
+            <fieldset>
+                <legend>Motivo</legend>
+                <input type="text" name="mot">
+            </fieldset>
+            <fieldset>
+                <legend>Triage</legend>
+                <input type="number" name="triage">
+            </fieldset>
+        
+            <input type="submit" value="Guardar">
+        
+        </form>
+
+        <div id="apps">
+
+            <a id="linkbuscar" href="http://localhost:8000/registro_consulta/busca_pac">Buscar</a>
+            <a id="linkbuscar" href="http://localhost:8000/registro_consulta/chart2">Estadísticas</a>
+        
+        </div>
+
+        <table class="table table-borderer table hover">
+            <tr>
+                <th>Nombres</th>
+                <th>Apellido paterno</th>
+                <th>Apellido materno</th>
+                <th>Edad</th>
+                <th>Semanas</th>
+                <th>Motivo</th>
+                <th>Triage</th>
+                <th>Fecha</th>
+            </tr>
+            {% for pacientes in lista_pac %}
+            <tr>
+                <td>{{pacientes.nombre}}</td>
+                <td>{{pacientes.apellido_paterno}}</td>
+                <td>{{pacientes.apellido_materno}}</td>
+                <td>{{pacientes.edad}}</td>
+                <td>{{pacientes.semanas}}</td>
+                <td>{{pacientes.motivo}}</td>
+                <td>{{pacientes.triage}}</td>
+                <td>{{pacientes.fecha}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+    </main>
+    
+</body>
+</html>

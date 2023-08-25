@@ -1,0 +1,10 @@
+SELECT * from registro_consulta_consulta
+WHERE strftime('%m', fecha) = '07';
+
+SELECT * FROM registro_consulta_consulta
+WHERE fecha BETWEEN '2023-06-01 20:00:00' AND '2023-06-02 08:00:00';
+
+SELECT motivo, count(motivo) AS total FROM registro_consulta_consulta 
+GROUP BY motivo 
+ORDER BY total DESC;
+
